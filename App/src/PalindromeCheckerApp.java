@@ -1,11 +1,18 @@
 import java.util.*;
 
 public class PalindromeCheckerApp {
-    class Node {
+    static class Node {
         char data;
         Node next;
         Node(char d) { data = d; }
     }
+
+    static boolean isPalindrome(String s, int left, int right) {
+        if (left >= right) return true;
+        if (s.charAt(left) != s.charAt(right)) return false;
+        return isPalindrome(s, left + 1, right - 1);
+    }
+
     public static void main(String[] args) {
 
         //UC1
@@ -120,7 +127,7 @@ public class PalindromeCheckerApp {
             deque.addLast(str.charAt(i));
         }
 
-        boolean isPalindrome = true;
+        isPalindrome = true;
 
         while (deque.size() > 1) {
             if (!deque.removeFirst().equals(deque.removeLast())) {
@@ -136,7 +143,7 @@ public class PalindromeCheckerApp {
         }
 
         //UC8
-        String str = "madam";
+        str = "madam";
         Node head = null, tail = null;
 
         for (int i = 0; i < str.length(); i++) {
@@ -165,7 +172,7 @@ public class PalindromeCheckerApp {
         }
 
         Node first = head, second = prev;
-        boolean isPalindrome = true;
+        isPalindrome = true;
 
         while (second != null) {
             if (first.data != second.data) {
@@ -177,6 +184,14 @@ public class PalindromeCheckerApp {
         }
 
         if (isPalindrome) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
+
+        //UC9
+        str = "madam";
+        if (isPalindrome(str, 0, str.length() - 1)) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not Palindrome");
