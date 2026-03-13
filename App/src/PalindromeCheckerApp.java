@@ -1,47 +1,15 @@
-import java.util.*;
-
+import java.util.Scanner;
 public class PalindromeCheckerApp {
-    static class Node {
-        char data;
-        Node next;
-        Node(char d) { data = d; }
+    public static boolean reverseMethod(String str) {
+        String reversed = new StringBuilder(str).reverse().toString();
+        return str.equals(reversed);
     }
-
-    static boolean isPalindrome(String s, int left, int right) {
-        if (left >= right) return true;
-        if (s.charAt(left) != s.charAt(right)) return false;
-        return isPalindrome(s, left + 1, right - 1);
-    }
-
-    public static boolean isPalindrome(String input) {
-
-
-        String normalized = input.replaceAll("\\s+", "").toLowerCase();
-
+    public static boolean twoPointerMethod(String str) {
         int left = 0;
-        int right = normalized.length() - 1;
+        int right = str.length() - 1;
 
         while (left < right) {
-            if (normalized.charAt(left) != normalized.charAt(right)) {
-                return false;
-            }
-            left++;
-            right--;
-        }
-
-        return true;
-    }
-
-    public boolean checkPalindrome(String input) {
-        String normalized = input.replaceAll("\\s+", "").toLowerCase();
-
-        char[] arr = normalized.toCharArray();
-
-        int left = 0;
-        int right = arr.length - 1;
-
-        while (left < right) {
-            if (arr[left] != arr[right]) {
+            if (str.charAt(left) != str.charAt(right)) {
                 return false;
             }
             left++;
@@ -49,219 +17,22 @@ public class PalindromeCheckerApp {
         }
         return true;
     }
-
     public static void main(String[] args) {
-
-        //UC1
-        System.out.println("=====================================");
-        System.out.println("      Welcome to Palindrome Checker");
-        System.out.println("=====================================");
-        System.out.println("Application Name : PalindromeChecker App");
-        System.out.println("Application Version : 1.0");
-        System.out.println("-------------------------------------");
-        System.out.println("Program started successfully.");
-        System.out.println("Proceeding to next use case...");
-        System.out.println("-------------------------------------");
-
-        //UC2
-        String word = "madam";
-        String reversed = "";
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed += word.charAt(i);
-        }
-        if (word.equals(reversed)) {
-            System.out.println("The string \"" + word + "\" is a Palindrome.");
-        } else {
-            System.out.println("The string \"" + word + "\" is NOT a Palindrome.");
-        }
-        System.out.println("Program finished.");
-
-        //UC3
-        String str = "madam";
-        reversed = "";
-
-        for (int i = str.length() - 1; i >= 0; i--) {
-            reversed = reversed + str.charAt(i);
-        }
-
-        if (str.equals(reversed)) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
-
-        //UC4
-        str = "madam";
-        char[] arr = str.toCharArray();
-        int left = 0;
-        int right = arr.length - 1;
-        boolean isPalindrome = true;
-
-        while (left < right) {
-            if (arr[left] != arr[right]) {
-                isPalindrome = false;
-                break;
-            }
-            left++;
-            right--;
-        }
-
-        if (isPalindrome) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
-
-        //UC5
-        str = "madam";
-        Stack<Character> stack = new Stack<>();
-
-        for (int i = 0; i < str.length(); i++) {
-            stack.push(str.charAt(i));
-        }
-
-        reversed = "";
-        while (!stack.isEmpty()) {
-            reversed += stack.pop();
-        }
-
-        if (str.equals(reversed)) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
-
-        //UC6
-        str = "madam";
-        Queue<Character> queue = new LinkedList<>();
-        stack = new Stack<>();
-
-        for (int i = 0; i < str.length(); i++) {
-            queue.add(str.charAt(i));
-            stack.push(str.charAt(i));
-        }
-
-        isPalindrome = true;
-
-        while (!queue.isEmpty()) {
-            if (queue.remove() != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
-
-        //UC7
-        str = "madam";
-        Deque<Character> deque = new ArrayDeque<>();
-
-        for (int i = 0; i < str.length(); i++) {
-            deque.addLast(str.charAt(i));
-        }
-
-        isPalindrome = true;
-
-        while (deque.size() > 1) {
-            if (!deque.removeFirst().equals(deque.removeLast())) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
-
-        //UC8
-        str = "madam";
-        Node head = null, tail = null;
-
-        for (int i = 0; i < str.length(); i++) {
-            Node node = new Node(str.charAt(i));
-            if (head == null) {
-                head = node;
-                tail = node;
-            } else {
-                tail.next = node;
-                tail = node;
-            }
-        }
-
-        Node slow = head, fast = head;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        Node prev = null, curr = slow;
-        while (curr != null) {
-            Node next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        Node first = head, second = prev;
-        isPalindrome = true;
-
-        while (second != null) {
-            if (first.data != second.data) {
-                isPalindrome = false;
-                break;
-            }
-            first = first.next;
-            second = second.next;
-        }
-
-        if (isPalindrome) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
-
-        //UC9
-        str = "madam";
-        if (isPalindrome(str, 0, str.length() - 1)) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not Palindrome");
-        }
-
-        //UC10
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter a string to check palindrome:");
+        System.out.println("Enter a string:");
         String input = scanner.nextLine();
-
-        if (isPalindrome(input)) {
-            System.out.println("The given string is a Palindrome (ignoring spaces and case).");
-        } else {
-            System.out.println("The given string is NOT a Palindrome.");
-        }
-
-        scanner.close();
-
-        //UC11
-
-        System.out.println("Enter a string to check palindrome:");
-        input = scanner.nextLine();
-        PalindromeCheckerApp checker = new PalindromeCheckerApp();
-
-        boolean result = checker.checkPalindrome(input);
-
-        if (result) {
-            System.out.println("The given string is a Palindrome.");
-        } else {
-            System.out.println("The given string is NOT a Palindrome.");
-        }
-
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        long start1 = System.nanoTime();
+        boolean result1 = reverseMethod(normalized);
+        long end1 = System.nanoTime();
+        long start2 = System.nanoTime();
+        boolean result2 = twoPointerMethod(normalized);
+        long end2 = System.nanoTime();
+        System.out.println("\n--- Results ---");
+        System.out.println("Reverse Method: " + (result1 ? "Palindrome" : "Not Palindrome"));
+        System.out.println("Execution Time: " + (end1 - start1) + " ns");
+        System.out.println("\nTwo Pointer Method: " + (result2 ? "Palindrome" : "Not Palindrome"));
+        System.out.println("Execution Time: " + (end2 - start2) + " ns");
         scanner.close();
     }
 }
