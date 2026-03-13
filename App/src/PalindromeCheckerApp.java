@@ -83,19 +83,42 @@ public class PalindromeCheckerApp {
         }
 
         //UC6
-        String str = "madam";
+        str = "madam";
         Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        stack = new Stack<>();
 
         for (int i = 0; i < str.length(); i++) {
             queue.add(str.charAt(i));
             stack.push(str.charAt(i));
         }
 
-        boolean isPalindrome = true;
+        isPalindrome = true;
 
         while (!queue.isEmpty()) {
             if (queue.remove() != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        if (isPalindrome) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
+
+        //UC7
+        String str = "madam";
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            deque.addLast(str.charAt(i));
+        }
+
+        boolean isPalindrome = true;
+
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
