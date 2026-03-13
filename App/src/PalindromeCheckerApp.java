@@ -13,6 +13,26 @@ public class PalindromeCheckerApp {
         return isPalindrome(s, left + 1, right - 1);
     }
 
+    public static boolean isPalindrome(String input) {
+
+        // Normalize string: remove spaces and convert to lowercase
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        int left = 0;
+        int right = normalized.length() - 1;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+
     public static void main(String[] args) {
 
         //UC1
@@ -76,7 +96,7 @@ public class PalindromeCheckerApp {
         }
 
         //UC5
-        String str = "madam";
+        str = "madam";
         Stack<Character> stack = new Stack<>();
 
         for (int i = 0; i < str.length(); i++) {
@@ -120,7 +140,7 @@ public class PalindromeCheckerApp {
         }
 
         //UC7
-        String str = "madam";
+        str = "madam";
         Deque<Character> deque = new ArrayDeque<>();
 
         for (int i = 0; i < str.length(); i++) {
@@ -196,5 +216,20 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println("Not Palindrome");
         }
+
+        //UC10
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a string to check palindrome:");
+        String input = scanner.nextLine();
+
+        if (isPalindrome(input)) {
+            System.out.println("The given string is a Palindrome (ignoring spaces and case).");
+        } else {
+            System.out.println("The given string is NOT a Palindrome.");
+        }
+
+        scanner.close();
+
     }
 }
