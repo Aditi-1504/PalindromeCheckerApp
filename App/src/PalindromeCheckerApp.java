@@ -1,17 +1,12 @@
 import java.util.Scanner;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        String word = "madam";
+        String str = "madam";
         String reversed = "";
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed += word.charAt(i);
-    public static boolean reverseMethod(String str) {
-        String reversed = new StringBuilder(str).reverse().toString();
-        return str.equals(reversed);
-    }
-    public static boolean twoPointerMethod(String str) {
-        int left = 0;
-        int right = str.length() - 1;
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed = reversed + str.charAt(i);
+        }
 
         while (left < right) {
             if (str.charAt(left) != str.charAt(right)) {
