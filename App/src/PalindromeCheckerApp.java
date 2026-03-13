@@ -2,15 +2,13 @@ import java.util.*;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String str = "madam";
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
         for (int i = 0; i < str.length(); i++) {
-            queue.add(str.charAt(i));
-            stack.push(str.charAt(i));
+            deque.addLast(str.charAt(i));
         }
         boolean isPalindrome = true;
-        while (!queue.isEmpty()) {
-            if (queue.remove() != stack.pop()) {
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
