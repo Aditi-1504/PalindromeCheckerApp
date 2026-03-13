@@ -38,5 +38,27 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println("Not Palindrome");
         }
+
+        //UC4
+        str = "madam";
+        char[] arr = str.toCharArray();
+        int left = 0;
+        int right = arr.length - 1;
+        boolean isPalindrome = true;
+
+        while (left < right) {
+            if (arr[left] != arr[right]) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+
+        if (isPalindrome) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
     }
 }
