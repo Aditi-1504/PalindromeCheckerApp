@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String str = "madam";
@@ -6,9 +7,8 @@ public class PalindromeCheckerApp {
         int right = arr.length - 1;
         boolean isPalindrome = true;
         while (left < right) {
-            if (arr[left] != arr[right]) {
-                isPalindrome = false;
-                break;
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
             }
             left++;
             right--;
