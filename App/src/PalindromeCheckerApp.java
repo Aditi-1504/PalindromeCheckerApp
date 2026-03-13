@@ -1,5 +1,10 @@
 import java.util.Scanner;
 public class PalindromeCheckerApp {
+    public static void main(String[] args) {
+        String word = "madam";
+        String reversed = "";
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversed += word.charAt(i);
     public static boolean reverseMethod(String str) {
         String reversed = new StringBuilder(str).reverse().toString();
         return str.equals(reversed);
