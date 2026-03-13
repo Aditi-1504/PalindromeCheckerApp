@@ -24,5 +24,19 @@ public class PalindromeCheckerApp {
             System.out.println("The string \"" + word + "\" is NOT a Palindrome.");
         }
         System.out.println("Program finished.");
+
+        //UC3
+        String str = "madam";
+        reversed = "";
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed = reversed + str.charAt(i);
+        }
+
+        if (str.equals(reversed)) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
     }
 }
