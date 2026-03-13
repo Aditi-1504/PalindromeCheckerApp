@@ -1,16 +1,28 @@
 import java.util.*;
 public class PalindromeCheckerApp {
-    static boolean isPalindrome(String s, int left, int right) {
-        if (left >= right) return true;
-        if (s.charAt(left) != s.charAt(right)) return false;
-        return isPalindrome(s, left + 1, right - 1);
+    public static boolean isPalindrome(String input) {
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        int left = 0;
+        int right = normalized.length() - 1;
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
     public static void main(String[] args) {
-        String str = "madam";
-        if (isPalindrome(str, 0, str.length() - 1)) {
-            System.out.println("Palindrome");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string to check palindrome:");
+        String input = scanner.nextLine();
+        if (isPalindrome(input)) {
+            System.out.println("The given string is a Palindrome (ignoring spaces and case).");
         } else {
-            System.out.println("Not Palindrome");
+            System.out.println("The given string is NOT a Palindrome.");
         }
+        scanner.close();
+
     }
 }
